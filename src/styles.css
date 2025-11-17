@@ -1,0 +1,403 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+    'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #111 0%, #050505 45%, #000 100%);
+  color: #111;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+#root {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app {
+  width: min(420px, 100%);
+  min-height: 640px;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-radius: 32px;
+  border: 2px solid #050505;
+  background: #fefefe;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.app__title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.app__title {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 0.03em;
+}
+
+.app__subtitle {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #666;
+}
+
+.app__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.app__summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.app__summary-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666;
+}
+
+.app__summary-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.toolbar-button {
+  border: 1.5px solid #111;
+  border-radius: 12px;
+  padding: 6px 14px;
+  background: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease,
+    box-shadow 0.12s ease;
+  box-shadow: 0 2px 0 #111;
+}
+
+.toolbar-button:hover:not(:disabled) {
+  background: #f5f5f5;
+}
+
+.toolbar-button:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #111;
+}
+
+.toolbar-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.icon-button {
+  border: 1.5px solid #111;
+  border-radius: 999px;
+  background: #fff;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.15s ease, transform 0.08s ease,
+    box-shadow 0.15s ease;
+  box-shadow: 0 2px 0 #111;
+}
+
+.icon-button__plus {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.icon-button:hover {
+  background-color: #f2f2f2;
+}
+
+.icon-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #111;
+}
+
+.app__main {
+  flex: 1;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.task-card {
+  border-radius: 20px;
+  padding: 2px;
+  background: #111;
+}
+
+.task-card__inner {
+  border-radius: 18px;
+  background: #fff;
+  padding: 10px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-card__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.task-card__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.task-card__count {
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #000;
+}
+
+.task-card__divider {
+  height: 1px;
+  background: #111;
+  opacity: 0.25;
+}
+
+.task-card__description {
+  margin: 0;
+  font-size: 12px;
+  color: #222;
+}
+
+.task-card__description--muted {
+  color: #bbb;
+  font-style: italic;
+}
+
+.task-card__body {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-card__btn {
+  border-radius: 999px;
+  border: 1.5px solid #111;
+  background: #fff;
+  padding: 4px 8px;
+  min-width: 46px;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 2px 0 #111;
+  transition: background-color 0.1s ease, transform 0.08s ease,
+    box-shadow 0.1s ease;
+}
+
+.task-card__btn--minus {
+  text-align: right;
+}
+
+.task-card__btn--plus {
+  text-align: left;
+}
+
+.task-card__btn:hover {
+  background: #f2f2f2;
+}
+
+.task-card__btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #111;
+}
+
+.task-card__ticks-wrapper {
+  flex: 1;
+  min-width: 0;
+  padding: 2px 4px;
+}
+
+.tick-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: 18px;
+  padding: 2px 0;
+  border-radius: 999px;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.tick-bar--empty {
+  background: #fafafa;
+}
+
+.tick-bar__tick {
+  flex: 0 0 auto;
+  /* Width: container width divided by count, clamped to feel good. */
+  width: max(4px, min(134px, calc(100% / var(--tick-count))));
+  border-radius: 99px;
+  background: #0059ff;
+}
+
+.empty-state {
+  margin-top: 40px;
+  text-align: center;
+  color: #555;
+}
+
+.empty-state__title {
+  margin: 0 0 4px;
+  font-weight: 500;
+}
+
+.empty-state__hint {
+  margin: 0;
+  font-size: 13px;
+  color: #777;
+}
+
+.empty-state__plus {
+  display: inline-block;
+  border-radius: 999px;
+  border: 1px solid #111;
+  padding: 1px 6px;
+  font-size: 12px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal {
+  width: 100%;
+  max-width: 360px;
+  border-radius: 18px;
+  background: #fff;
+  border: 2px solid #111;
+  box-shadow: 0 10px 0 #111;
+  padding: 16px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal__title {
+  margin: 0 0 2px;
+  font-size: 18px;
+}
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.modal__input,
+.modal__textarea {
+  border-radius: 10px;
+  border: 1.5px solid #111;
+  padding: 6px 8px;
+  font: inherit;
+  resize: vertical;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.btn {
+  border-radius: 999px;
+  border: 1.5px solid #111;
+  padding: 4px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.btn--ghost {
+  background: #f5f5f5;
+}
+
+.btn--primary {
+  background: #111;
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: #000;
+}
+
+.btn--ghost:hover {
+  background: #eaeaea;
+}
+
+

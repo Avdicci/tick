@@ -1,0 +1,20 @@
+{
+  "name": "Tick",
+  "short_name": "Tick",
+  "description": "A daily micro-grind tracker for counting tiny repetitions.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "/tick-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
+
+
