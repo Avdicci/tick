@@ -277,17 +277,21 @@ body {
   align-items: stretch;
   justify-content: flex-start;
   width: 100%;
-  height: 18px;
-  padding: 2px 0;
-  border-radius: 999px;
-  background: #f7f7f7;
-  border: 1px solid #ddd;
+  height: 20px;
+  /* Slightly taller for impact */
+  padding: 2px;
+  border-radius: 4px;
+  /* Sharp but safe */
+  background: #0a0a0a;
+  /* Deep dark background */
+  border: 1px solid #222;
   overflow: hidden;
   flex-wrap: nowrap;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .tick-bar--empty {
-  background: #fafafa;
+  background: #0a0a0a;
 }
 
 .tick-bar__tick {
@@ -299,14 +303,54 @@ body {
      Formula: 100% / max(3, count)
   */
   width: calc(100% / max(3, var(--tick-count)));
-  border-radius: 99px;
-  background: #0059ff;
+  border-radius: 1px;
+  /* Sharp edges */
+
+  /* Haptic Neon Gradient */
+  background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%);
+
+  /* Inner glass/light effect */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    /* Top highlight */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    /* Bottom shade */
+    0 0 8px rgba(79, 172, 254, 0.6);
+  /* Outer glow */
+
+  /* Entry Animation */
+  animation: tick-entry 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+    tick-shimmer 3s ease-in-out infinite alternate 0.4s;
 }
 
-.empty-state {
-  margin-top: 40px;
-  text-align: center;
-  color: #555;
+@keyframes tick-entry {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.5) scaleY(0.5);
+    filter: brightness(3);
+    /* Flash white */
+  }
+
+  50% {
+    filter: brightness(2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes tick-shimmer {
+  0% {
+    filter: brightness(1);
+  }
+
+  100% {
+    filter: brightness(1.2);
+    /* Subtle breathing */
+  }
 }
 
 .empty-state__title {
