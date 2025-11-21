@@ -9,12 +9,10 @@
   "theme_color": "#050505",
   "icons": [
     {
-      "src": "/tick-icon.svg",
+      "src": "/tick/tick-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     }
   ]
 }
-
-
