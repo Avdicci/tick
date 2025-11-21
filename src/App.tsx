@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import type { Task } from './types';
 import { TaskCard } from './components/TaskCard';
 import { AddTaskModal } from './components/AddTaskModal';
+import { ConfirmModal } from './components/ConfirmModal';
 
 const STORAGE_KEY = 'grindticks_tasks_v1';
 
@@ -47,6 +48,7 @@ const persistTasks = (tasks: Task[]) => {
 export const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>(() => loadInitialTasks());
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   useEffect(() => {
     persistTasks(tasks);
@@ -90,25 +92,23 @@ export const App: React.FC = () => {
       prev.map((task) =>
         task.id === id
           ? {
-              ...task,
-              count: Math.max(0, task.count + delta)
-            }
+            ...task,
+            count: Math.max(0, task.count + delta)
+          }
           : task
       )
     );
   };
 
-  const handleClearAll = () => {
-    if (tasks.length === 0) {
-      return;
+  const handleClearAllClick = () => {
+    if (tasks.length > 0) {
+      setIsConfirmOpen(true);
     }
-    const confirmed = window.confirm(
-      'This will remove all tasks for today. Continue?'
-    );
-    if (!confirmed) {
-      return;
-    }
+  };
+
+  const confirmClearAll = () => {
     setTasks([]);
+    setIsConfirmOpen(false);
   };
 
   const totalTicks = useMemo(
@@ -131,7 +131,7 @@ export const App: React.FC = () => {
           <button
             type="button"
             className="toolbar-button"
-            onClick={handleClearAll}
+            onClick={handleClearAllClick}
             disabled={tasks.length === 0}
           >
             Clear all
@@ -173,6 +173,14 @@ export const App: React.FC = () => {
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onSave={handleAddTask}
+      />
+
+      <ConfirmModal
+        isOpen={isConfirmOpen}
+        title="Clear All Tasks?"
+        message="This will permanently remove all tasks and ticks for today. This action cannot be undone."
+        onConfirm={confirmClearAll}
+        onCancel={() => setIsConfirmOpen(false)}
       />
     </div>
   );
