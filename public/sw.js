@@ -1,5 +1,10 @@
 const CACHE_NAME = 'tick-app-v1';
-const APP_SHELL = ['/', '/index.html', '/manifest.webmanifest', '/tick-icon.svg'];
+const APP_SHELL = [
+  '/tick/',
+  '/tick/index.html',
+  '/tick/manifest.webmanifest',
+  '/tick/tick-icon.svg'
+];
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
